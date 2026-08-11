@@ -1,0 +1,6 @@
+# Exclude build artifacts and large directories that cause path length issues
+**/node_modules
+**/cdk.out
+**/.next
+**/dist
+**/build

@@ -1,0 +1,51 @@
+{
+  "name": "metadata-harmonization-app",
+  "version": "0.1.0",
+  "bin": {
+    "metadata-harmonization-app": "bin/metadata-harmonization-app.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "22.7.9",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "aws-cdk": "^2.1133.0",
+    "eslint-plugin-import": "^2.31.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.264.0",
+    "cdk-nag": "^2.34.23",
+    "constructs": "^10.0.0",
+    "js-yaml": "^4.1.0",
+    "zod": "^3.24.1"
+  },
+  "//overrides": [
+    "minimatch: without this override, the root copy resolves to 9.0.5 via",
+    "@typescript-eslint/typescript-estree -- a real ReDoS (2522ms vs 3ms patched on the",
+    "GHSA-7r86 PoC). Pinning to ^9.0.7 resolves it to 9.0.9, which is patched. Do NOT",
+    "widen this to ^10 -- v10 drops the default export that @eslint/eslintrc still imports.",
+    "brace-expansion: pinned to the 2.x maintenance line (resolves to 2.1.4), which predates",
+    "the 4.x/5.x rewrite that introduced CVE-2026-69152 and keeps the callable CJS export",
+    "that minimatch@9 needs. Do NOT move it to 5.x.",
+    "Neither override can reach the copies vendored inside aws-cdk-lib via",
+    "bundledDependencies. Its minimatch (10.2.5) is already patched for GHSA-7r86, but its",
+    "brace-expansion (5.0.8 as of aws-cdk-lib 2.264.0) is still vulnerable to CVE-2026-69152",
+    "-- accepted as unfixable until aws-cdk-lib ships a release bundling brace-expansion",
+    ">=5.0.9."
+  ],
+  "overrides": {
+    "brace-expansion": "^2.1.4",
+    "minimatch": "^9.0.7",
+    "react-is": "^19.2.1"
+  }
+}

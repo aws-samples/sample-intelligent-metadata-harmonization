@@ -1,0 +1,40 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# Evaluation Package Configuration
+# Generated for testing Per-Node Correction Metrics
+
+# REQUIRED CONFIGURATION
+processor_config_path: "projects/metadata-harmonization-processor/config.yaml"
+data_directory: "data/synthetic_dataset"
+schema_program_id: "887f963b-ffea-4f3d-b2b3-9782a97066dc"
+schema_core_id: "f2433d87-1984-423e-8a29-5f356cfb8c71"
+
+# OUTPUT CONFIGURATION
+output_directory: "evaluation_results"
+report_formats:
+  - "json"
+  - "markdown"
+
+# EVALUATION OPTIONS
+include_visualizations: true
+confidence_threshold: 0.5
+verbose_logging: false
+
+# COST ESTIMATION CONFIGURATION
+# Configure pricing for AWS Bedrock models to enable cost estimation in
+# evaluation reports. Costs are calculated based on token usage during
+# LLM and embedding API calls.
+bedrock_pricing:
+  # LLM Models - pricing per 1000 tokens in USD
+  llm_models:
+    "amazon.nova-pro-v1:0":
+      input_price_per_1k: 0.0008   # USD per 1000 input tokens
+      output_price_per_1k: 0.0032  # USD per 1000 output tokens
+    "us.amazon.nova-micro-v1:0":
+      input_price_per_1k: 0.000035   # USD per 1000 input tokens
+      output_price_per_1k: 0.00014  # USD per 1000 output tokens
+  # Embedding Models - pricing per 1000 tokens in USD
+  embedding_models:
+    "amazon.titan-embed-text-v2:0": 0.00002  # USD per 1000 tokens

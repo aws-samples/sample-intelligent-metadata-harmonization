@@ -1,0 +1,12 @@
+{
+  "job_id": "a68c6c09-8300-46d6-b5f0-b8956a819a5d",
+  "status": "failed",
+  "metadata": {
+    "stage": "graph_execution",
+    "error": "Graph.invoke_async() takes 2 positional arguments but 3 were given",
+    "error_type": "TypeError",
+    "end_time": "2025-09-08T18:20:09.821232"
+  },
+  "updated_at": "2025-09-08T22:20:09.821234+00:00",
+  "created_at": "2025-09-08T22:20:09.821004+00:00"
+}

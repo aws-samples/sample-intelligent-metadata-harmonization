@@ -1,0 +1,8 @@
+{
+  "name": "sharp",
+  "version": "0.34.4",
+  "private": true,
+  "license": "MIT",
+  "description": "Local stub that keeps LGPL-3.0 libvips binaries out of the dependency tree. See README.md.",
+  "main": "index.js"
+}

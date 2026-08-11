@@ -1,0 +1,56 @@
+[
+    {
+        "row": 1,
+        "field": "site_classification",
+        "schema_field": "SiteClassification",
+        "original": "Agricultural",
+        "error": "Agricultral",
+        "error_type": "typo",
+        "valid_options": ["Industrial", "Agricultural", "Residential", "Natural", "Municipal", "Commercial"]
+    },
+    {
+        "row": 1,
+        "field": "collection_method",
+        "schema_field": "CollectionMethod",
+        "original": "Composite Sample",
+        "error": "Composite Smple",
+        "error_type": "typo",
+        "valid_options": ["Grab Sample", "Composite Sample", "Continuous Monitoring", "Depth Integrated", "Not Applicable", "Not Provided"]
+    },
+    {
+        "row": 2,
+        "field": "collector_name",
+        "schema_field": "CollectorName",
+        "original": "Environmental Monitoring Team",
+        "error": "Enviromental Monitoring Team",
+        "error_type": "typo",
+        "valid_options": ["Environmental Monitoring Team", "Field Services Division", "Water Resources Unit"]
+    },
+    {
+        "row": 4,
+        "field": "sample_type",
+        "schema_field": "SampleType",
+        "original": "Stormwater",
+        "error": "stormwater",
+        "error_type": "case_spacing",
+        "valid_options": ["Surface Water", "Groundwater", "Wastewater", "Drinking Water", "Stormwater", "Reclaimed Water"]
+    },
+    {
+        "row": 4,
+        "field": "sample_status",
+        "schema_field": "SampleStatus",
+        "original": "Received",
+        "error": "Recieved",
+        "error_type": "typo",
+        "valid_options": ["Received", "In Analysis", "Completed", "Rejected", "On Hold"]
+    },
+    {
+        "row": 4,
+        "field": "sample_matrix",
+        "schema_field": "sample_matrix",
+        "original": "Water",
+        "error": "Wter",
+        "error_type": "typo",
+        "valid_options": ["Water", "Sediment", "Soil", "Air", "Biota"]
+    }
+]

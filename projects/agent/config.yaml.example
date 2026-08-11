@@ -1,0 +1,27 @@
+# Metadata Harmonization Agent Configuration
+#
+# Note: Environment variables take priority over this file.
+# Recommended approach: Use environment variables (MCP_URL, MCP_PAT, etc.)
+
+# MCP Server Configuration
+mcp_url: "http://localhost:8080/agent/mcp"  # Default for local development
+
+# Connection Settings
+timeout: 30  # Connection timeout in seconds (5-300 recommended)
+
+# Logging Configuration
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# Demo Configuration
+test_data_dir: "test_data"
+
+# Production Example (use environment variables instead):
+# mcp_url: "https://your-production-server.com/mcp"
+# timeout: 60
+# log_level: "WARNING"
+
+# Environment Variable Examples:
+# export MCP_URL="http://localhost:8080/agent/mcp"
+# export MCP_PAT="your-personal-access-token"  # Optional for local servers
+# export MCP_TIMEOUT="30"
+# export LOG_LEVEL="INFO"

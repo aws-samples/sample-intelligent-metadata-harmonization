@@ -1,0 +1,336 @@
+# ============================================================================
+# Evaluation Package Configuration
+# ============================================================================
+# This file configures the metadata harmonization evaluation system.
+# Copy this file to config.yaml and adjust settings for your environment.
+#
+# Quick Start:
+#   1. Copy this file: cp config.yaml.example config.yaml
+#   2. Update processor_config_path to point to your processor config
+#   3. Update data_directory to point to your test datasets
+#   4. Adjust schema IDs to match your target schemas
+#   5. Run evaluation: python -m metadata_harmonization_eval.cli <dataset_path>
+#
+# For detailed documentation, see: projects/eval/README.md
+# ============================================================================
+
+
+# ============================================================================
+# REQUIRED CONFIGURATION
+# ============================================================================
+# These fields MUST be set for the evaluation system to work.
+
+# Processor Configuration
+# Path to the main metadata harmonization processor configuration file.
+# This should point to the config.yaml used by the processor package.
+# The path can be absolute or relative to this config file.
+#
+# Example values:
+#   - "../../config.yaml" (relative path from projects/eval/)
+#   - "/absolute/path/to/config.yaml"
+#   - "config.yaml" (if in same directory)
+processor_config_path: "../../config.yaml"
+
+# Dataset Configuration
+# Directory containing test datasets (CSV files) and their corresponding
+# ground truth mappings (JSON files). The system will look for pairs of
+# files with matching names (e.g., dataset.csv and dataset_mappings.json).
+#
+# Expected structure:
+#   data_directory/
+#     ├── synthetic_cyclospora_dataset_1_err40.csv
+#     ├── synthetic_cyclospora_dataset_1_err40_mappings.json
+#     ├── synthetic_cyclospora_dataset_2_err50.csv
+#     └── synthetic_cyclospora_dataset_2_err50_mappings.json
+#
+# Example values:
+#   - "../../data/synthetic_dataset" (relative path)
+#   - "/absolute/path/to/test/datasets"
+data_directory: "../../data/synthetic_dataset"
+
+# Schema Identifiers
+# These IDs specify which schemas to use for evaluation. They must match
+# the schema IDs available in your schema catalog (data/schema/catalog.json).
+#
+# For Cyclospora evaluation:
+#   - schema_program_id: "cyclospora_program"
+#   - schema_core_id: "cyclospora_core"
+#
+# For other disease programs, update these to match your target schemas.
+schema_program_id: "cyclospora_program"
+schema_core_id: "cyclospora_core"
+
+
+# ============================================================================
+# OUTPUT CONFIGURATION
+# ============================================================================
+# Control where and how evaluation results are saved.
+
+# Output Directory
+# Directory where evaluation results will be saved. Each evaluation run
+# creates a timestamped subdirectory (e.g., eval-20251028-103000/).
+# The directory will be created if it doesn't exist.
+#
+# Default: "evaluation_results"
+output_directory: "evaluation_results"
+
+# Report Formats
+# List of report formats to generate. Available options:
+#   - "json": Machine-readable JSON format with complete metrics
+#   - "markdown": Human-readable markdown summary with tables and charts
+#
+# You can specify one or both formats. JSON is recommended for programmatic
+# access and CI/CD integration. Markdown is recommended for human review.
+#
+# Default: ["json", "markdown"]
+report_formats:
+  - "json"
+  - "markdown"
+
+
+# ============================================================================
+# EVALUATION OPTIONS
+# ============================================================================
+# Fine-tune evaluation behavior and analysis.
+
+# Visualizations
+# Include text-based visualizations (ASCII histograms, bar charts) in
+# markdown reports. Set to false for cleaner reports without charts.
+#
+# Default: true
+include_visualizations: true
+
+# Confidence Threshold
+# Threshold for classifying predictions as "high confidence" vs "low confidence".
+# Used to segment accuracy analysis and identify prediction reliability patterns.
+# Must be between 0.0 and 1.0.
+#
+# Typical values:
+#   - 0.5: Balanced threshold (default)
+#   - 0.7: Conservative (stricter high-confidence classification)
+#   - 0.3: Permissive (more predictions classified as high-confidence)
+#
+# Default: 0.5
+confidence_threshold: 0.5
+
+# Verbose Logging
+# Enable detailed logging output for debugging. When true, logs include:
+#   - Dataset loading details
+#   - Processing pipeline stages
+#   - Metrics calculation steps
+#   - Detailed error messages
+#
+# Recommended for development and troubleshooting. Disable for production
+# runs to reduce log volume.
+#
+# Default: false
+verbose_logging: false
+
+
+# ============================================================================
+# EVALUATION SCENARIOS
+# ============================================================================
+# Below are example configurations for common evaluation scenarios.
+# Uncomment and modify as needed.
+
+# --- Scenario 1: Quick Accuracy Check ---
+# Fast evaluation with minimal output for quick accuracy verification.
+#
+# output_directory: "quick_eval"
+# report_formats: ["json"]
+# include_visualizations: false
+# verbose_logging: false
+
+# --- Scenario 2: Detailed Analysis ---
+# Comprehensive evaluation with all visualizations and verbose logging
+# for in-depth analysis and debugging.
+#
+# output_directory: "detailed_eval"
+# report_formats: ["json", "markdown"]
+# include_visualizations: true
+# verbose_logging: true
+
+# --- Scenario 3: CI/CD Integration ---
+# Optimized for automated testing in continuous integration pipelines.
+# JSON-only output with minimal logging.
+#
+# output_directory: "ci_eval_results"
+# report_formats: ["json"]
+# include_visualizations: false
+# verbose_logging: false
+# confidence_threshold: 0.7  # Stricter threshold for production
+
+# --- Scenario 4: Research and Development ---
+# Configuration for exploring confidence score distributions and
+# error patterns during model development.
+#
+# output_directory: "research_eval"
+# report_formats: ["json", "markdown"]
+# include_visualizations: true
+# verbose_logging: true
+# confidence_threshold: 0.5  # Balanced for analysis
+
+
+# ============================================================================
+# COST ESTIMATION CONFIGURATION
+# ============================================================================
+# Configure pricing for AWS Bedrock models to enable cost estimation in
+# evaluation reports. Costs are calculated based on token usage during
+# LLM and embedding API calls.
+
+# Bedrock Pricing
+# Pricing configuration for AWS Bedrock models used during evaluation.
+# Prices are specified per 1000 tokens in USD.
+#
+# Default pricing (as of November 2025):
+#   - amazon.nova-pro-v1:0: $0.0008/1K input tokens, $0.0032/1K output tokens
+#   - amazon.titan-embed-text-v2:0: $0.00002/1K tokens
+#
+# Update these values if:
+#   - AWS Bedrock pricing changes
+#   - You switch to different models
+#   - You have custom pricing agreements
+#
+# If a model is not listed here, cost will be reported as $0.00 with a warning.
+#
+# Optional: If not specified, uses default pricing shown below.
+bedrock_pricing:
+  # LLM Models
+  # Dictionary mapping model IDs to input/output token pricing
+  llm_models:
+    "amazon.nova-pro-v1:0":
+      input_price_per_1k: 0.0008   # USD per 1000 input tokens
+      output_price_per_1k: 0.0032  # USD per 1000 output tokens
+    # Add additional LLM models as needed:
+    # "anthropic.claude-3-sonnet-20240229-v1:0":
+    #   input_price_per_1k: 0.003
+    #   output_price_per_1k: 0.015
+
+  # Embedding Models
+  # Dictionary mapping model IDs to token pricing
+  embedding_models:
+    "amazon.titan-embed-text-v2:0": 0.00002  # USD per 1000 tokens
+    # Add additional embedding models as needed:
+    # "cohere.embed-english-v3": 0.0001
+
+
+# ============================================================================
+# ADVANCED CONFIGURATION
+# ============================================================================
+# These settings are for advanced use cases and future enhancements.
+# Most users can leave these at their default values.
+
+# Note: The following settings are documented for future use but may not
+# be fully implemented in the current version. Check the documentation
+# for the latest feature availability.
+
+# Batch Processing
+# Maximum number of datasets to process in a single batch evaluation.
+# Helps prevent memory issues with very large batch runs.
+# Set to 0 for unlimited (not recommended for large batches).
+#
+# Default: 10 (future enhancement)
+# max_batch_size: 10
+
+# Parallel Processing
+# Enable parallel processing for batch evaluations to improve performance.
+# Requires sufficient system resources (CPU cores and memory).
+#
+# Default: false (future enhancement)
+# parallel_processing: false
+
+# Session Management
+# Prefix for evaluation session IDs. Session IDs are generated as:
+# {session_prefix}-{timestamp}
+#
+# Default: "eval" (future enhancement)
+# session_prefix: "eval"
+
+# Intermediate Files
+# Keep intermediate processing files for debugging. When true, saves:
+#   - Raw processor output
+#   - Intermediate validation results
+#   - Schema alignment details
+#
+# Warning: Can consume significant disk space for large datasets.
+#
+# Default: false (future enhancement)
+# keep_intermediate_files: false
+
+# Performance Limits
+# Timeout for individual dataset processing in seconds. Prevents
+# hung evaluations from blocking batch runs.
+# Set to 0 for no timeout (not recommended).
+#
+# Default: 300 seconds (5 minutes) (future enhancement)
+# processing_timeout: 300
+
+# Memory Limit
+# Maximum memory usage per evaluation in megabytes.
+# Set to 0 for unlimited (not recommended for production).
+#
+# Default: 0 (unlimited) (future enhancement)
+# memory_limit: 0
+
+# Metrics Configuration
+# Size of confidence distribution buckets (e.g., 0.2 creates buckets:
+# 0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, 0.8-1.0).
+# Must be between 0.0 and 1.0.
+#
+# Default: 0.2 (future enhancement)
+# confidence_bucket_size: 0.2
+
+# Minimum Confidence Score
+# Exclude predictions with confidence below this threshold from analysis.
+# Useful for focusing on higher-quality predictions.
+# Must be between 0.0 and 1.0.
+#
+# Default: 0.0 (include all predictions) (future enhancement)
+# min_confidence_score: 0.0
+
+# Error Analysis Limits
+# Maximum number of false positives and false negatives to include
+# in detailed reports. Prevents reports from becoming too large.
+# Set to 0 for unlimited (not recommended).
+#
+# Default: 50 each (future enhancement)
+# max_false_positives: 50
+# max_false_negatives: 50
+
+# Report Breakdowns
+# Control which detailed breakdowns are included in reports.
+# Disabling these can reduce report size for large evaluations.
+#
+# Default: true for both (future enhancement)
+# include_field_breakdown: true
+# include_error_type_breakdown: true
+
+
+# ============================================================================
+# TROUBLESHOOTING
+# ============================================================================
+# Common issues and solutions:
+#
+# 1. "Configuration file not found"
+#    - Check that processor_config_path points to a valid file
+#    - Use absolute paths if relative paths aren't working
+#
+# 2. "Data directory not found"
+#    - Verify data_directory exists and contains CSV + JSON pairs
+#    - Check file permissions
+#
+# 3. "Invalid schema IDs"
+#    - Ensure schema_program_id and schema_core_id match your catalog
+#    - Check data/schema/catalog.json for available schemas
+#
+# 4. "Cannot create output directory"
+#    - Check write permissions for output_directory
+#    - Ensure parent directories exist
+#
+# 5. "Low accuracy results"
+#    - Verify ground truth mappings are correct
+#    - Check that schema IDs match the dataset's target schema
+#    - Enable verbose_logging to see detailed processing steps
+#
+# For more help, see: projects/eval/README.md or open an issue.
+# ============================================================================

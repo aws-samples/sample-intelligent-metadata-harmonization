@@ -1,0 +1,37 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# No AI Configuration Example
+# Configuration without AI-powered semantic search (pattern-based only)
+
+# AWS Configuration
+aws_region: "us-east-1"
+aws_profile: "default"
+
+# Session Management - File-based for simplicity
+session_saver_type: "file"
+file_session_directory: "./sessions"
+
+# Data Saver Configuration - Local for simplicity
+job_status_saver_type: "local"
+job_status_storage_dir: "./data/job_status"
+result_saver_type: "local"
+results_local_dir: "./data/validation-results"
+
+# Disable all caching since no AI embeddings are used
+enable_redis_cache: false
+enable_memory_cache: false
+
+# AI Model Configuration - Disabled
+# Note: When AI services are unavailable, only pattern-based predictions will work
+embedding_provider: "bedrock"
+bedrock_model_id: "amazon.titan-embed-text-v1"
+cosine_similarity_threshold: 0.7
+max_retries: 1  # Minimal retries since AI is expected to fail
+
+# Processing Configuration
+timeout_seconds: 180
+
+# Schema Configuration
+schema_directory: "./data/schema"

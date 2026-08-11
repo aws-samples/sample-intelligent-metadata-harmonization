@@ -1,0 +1,160 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "metadata-harmonization-processor"
+version = "0.1.0"
+description = "A standalone Python package for metadata harmonization using AWS Strands"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "Joseph Cottingham", email = "joehcott@amazon.com"}
+]
+keywords = ["metadata", "harmonization", "aws", "strands", "validation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "pandas>=1.5.0",
+    "numpy>=1.21.0",
+    "boto3>=1.26.0",
+    "botocore>=1.29.0",
+    "redis>=4.5.0",
+    "PyYAML>=6.0",
+    "scikit-learn>=1.2.0",
+    "strands-agents>=1.19.0",
+    "loguru",
+    "rapidfuzz>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "ruff>=0.1.9",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+    "pre-commit>=3.0.0",
+    "moto[dynamodb,s3,bedrock]>=4.2.0",
+    "fakeredis>=2.10.0",
+    "botocore>=1.29.0",
+]
+
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "moto[dynamodb,s3,bedrock]>=4.2.0",
+    "fakeredis>=2.10.0",
+    "botocore>=1.29.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/cdc/metadata-harmonization-processor"
+Repository = "https://github.com/cdc/metadata-harmonization-processor"
+Documentation = "https://metadata-harmonization-processor.readthedocs.io"
+"Bug Tracker" = "https://github.com/cdc/metadata-harmonization-processor/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "unit: marks tests as unit tests",
+    "integration: marks tests as integration tests",
+    "slow: marks tests as slow running",
+]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["src/metadata_harmonization_processor"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["metadata_harmonization_processor"]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "boto3.*",
+    "botocore.*",
+    "redis.*",
+    "sklearn.*",
+    "strands.*",
+]
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".eggs",
+    "*.egg-info",
+    ".venv",
+    ".mypy_cache",
+    ".pytest_cache",
+]

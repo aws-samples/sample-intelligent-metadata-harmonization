@@ -1,0 +1,49 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# Production Configuration Example
+# Configuration for production deployment with AWS services
+
+# AWS Configuration
+aws_region: "us-east-1"
+aws_profile: "production"  # or use IAM roles
+
+# Session Management - S3-based for production
+session_saver_type: "s3"
+session_s3_bucket: "my-metadata-processor-sessions"
+session_s3_prefix: "production/sessions/"
+
+# Production Mode Settings
+local_development_mode: false
+
+# Data Saver Configuration
+# Job Status Saver - DynamoDB for production
+job_status_saver_type: "dynamodb"
+job_status_table_name: "metadata-harmonization-jobs"
+
+# Result Saver - S3 for production
+result_saver_type: "s3"
+results_s3_bucket: "my-metadata-results-bucket"
+results_s3_prefix: "production/validation-results/"
+
+# Caching Configuration - Redis enabled for production
+enable_redis_cache: true
+redis_endpoint: "my-elasticache-cluster.cache.amazonaws.com"
+redis_port: 6379
+
+# Fallback in-memory caching (used if Redis is unavailable)
+enable_memory_cache: true
+memory_cache_max_size: 50000
+
+# AI Model Configuration - Production settings
+embedding_provider: "bedrock"
+bedrock_model_id: "amazon.titan-embed-text-v2:0"
+cosine_similarity_threshold: 0.8
+max_retries: 5
+
+# Processing Configuration - Production timeouts
+timeout_seconds: 600
+
+# Schema Configuration
+schema_directory: "/opt/metadata-processor/schemas"

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "patient_id": {
+      "type": "string",
+      "description": "Unique patient identifier",
+      "pattern": "^P[0-9]{3,6}$"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150,
+      "description": "Patient age in years"
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["M", "F", "Other"],
+      "description": "Patient gender"
+    }
+  },
+  "required": ["patient_id", "age", "gender"]
+}

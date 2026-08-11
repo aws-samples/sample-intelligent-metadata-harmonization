@@ -1,0 +1,41 @@
+<!--
+ Copyright (c) 2026 Amazon.com
+ This file is licensed under the MIT License.
+ See the LICENSE file in the project root for full license information.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Apply All Changes</title>
+</head>
+<body>
+    <h1>Test Apply All Changes</h1>
+    <p>This is a simple test page to verify the Apply All functionality works correctly.</p>
+
+    <h2>Expected Behavior:</h2>
+    <ul>
+        <li>When "Apply All" is clicked, changes should be applied immediately</li>
+        <li>The UI should update to reflect the changes without needing additional actions</li>
+        <li>Only successful changes should be marked as "Applied"</li>
+        <li>Failed changes should continue to show as "Pending" with error messages</li>
+    </ul>
+
+    <h2>Debug Information:</h2>
+    <p>Check the browser console for debug logs:</p>
+    <ul>
+        <li>🔄 MetadataEditor: currentData changed - indicates data state updates</li>
+        <li>🔄 MetadataEditor: forceUpdateCounter changed - indicates forced re-renders</li>
+        <li>🔧 MetadataEditor: Applying all schema changes - indicates apply all started</li>
+        <li>🔧 MetadataEditor: State updates completed - indicates apply all finished</li>
+    </ul>
+
+    <h2>Testing Steps:</h2>
+    <ol>
+        <li>Load a CSV file with validation errors</li>
+        <li>Click "Apply All" on schema changes or validation errors</li>
+        <li>Verify changes are applied immediately without needing to trigger other actions</li>
+        <li>Check that only successful changes are marked as applied</li>
+        <li>Verify failed changes remain pending with appropriate error messages</li>
+    </ol>
+</body>
+</html>

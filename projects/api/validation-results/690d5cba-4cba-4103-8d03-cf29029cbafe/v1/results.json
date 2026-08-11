@@ -1,0 +1,315 @@
+{
+  "job_id": "690d5cba-4cba-4103-8d03-cf29029cbafe",
+  "version": 1,
+  "timestamp": "2025-09-30T19:42:33.980810+00:00",
+  "combined_results": {
+    "validation_results": {
+      "validation_results": [
+        {
+          "row": 4,
+          "column": "SampleOriginCountry",
+          "current_value": "USA",
+          "valid_options": [
+            "United States of America"
+          ],
+          "recommended_value": "United States of America",
+          "error_type": "INVALID_OPTION",
+          "error_message": "sample_origin_country is a required field. Valid input(s) are [\"United States of America\"]",
+          "schema_field_name": "SampleOriginCountry"
+        },
+        {
+          "row": 1,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 2,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 3,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 4,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 5,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 6,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 7,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 8,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 9,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        },
+        {
+          "row": 10,
+          "column": "library_layout",
+          "current_value": "",
+          "valid_options": [
+            "Single",
+            "Paired"
+          ],
+          "recommended_value": "Single",
+          "error_type": "REQUIRED_VALUE",
+          "error_message": "library_layout is a required field. Valid input(s) are: [\"Single\" or \"Paired\"]",
+          "schema_field_name": "library_layout"
+        }
+      ],
+      "summary": {
+        "total_rows": 10,
+        "total_errors": 11,
+        "error_types": {
+          "REQUIRED_VALUE": 10,
+          "INVALID_OPTION": 1,
+          "INVALID_PATTERN": 0
+        }
+      }
+    },
+    "schema_alignment_results": {
+      "schema_alignment_results": [
+        {
+          "change_type": "rename",
+          "original_column": "sequencing_protocol_primer_set",
+          "new_column": "SequencingProtocolPrimerSet",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "Submitter_State",
+          "new_column": "submitter_state",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "sequencing_instrument",
+          "new_column": "SequencingInstrument",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "organism",
+          "new_column": "Organism",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "strain",
+          "new_column": "StrainName",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "sample_collection_date",
+          "new_column": "SampleCollectionDate",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "State_Lab_ID",
+          "new_column": "state_lab_id",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "Case_ID",
+          "new_column": "case_id",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "environmental_site",
+          "new_column": "EnvironmentalSite",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "sample_origin_country",
+          "new_column": "SampleOriginCountry",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "library_preparation_kit",
+          "new_column": "LibraryPreparationKit",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "sample_id",
+          "new_column": "SampleId",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "host_scientific_name",
+          "new_column": "HostScientificName",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "host_disease",
+          "new_column": "HostDisease",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "sample_received_date",
+          "new_column": "SampleReceivedDate",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "rename",
+          "original_column": "submitter_name",
+          "new_column": "SubmitterName",
+          "reason": "LLM-determined semantic match",
+          "row_count_affected": 10
+        },
+        {
+          "change_type": "add",
+          "original_column": null,
+          "new_column": "library_layout",
+          "reason": "Required by schema",
+          "row_count_affected": 10
+        }
+      ],
+      "summary": {
+        "job_id": "690d5cba-4cba-4103-8d03-cf29029cbafe",
+        "version": 1,
+        "timestamp": "2025-09-30T19:42:33.970072",
+        "original_data_csv": "sample_id,submitter_name,organism,sequencing_instrument,library_strategy,library_source,library_selection,library_preparation_kit,design_description,platform,strain,host_scientific_name,sample_collection_date,sample_received_date,sample_origin_country,SampleOriginStateProvinceTerritory,anatomical_material,gene_targets,sequence_id,sample_description,host_disease,sequencing_protocol_primer_set,environmental_site,CSID,Case_ID,Submitter_State,State_Lab_ID\nDC24-NY0001,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment DNA Prep kit,Illumina,Not Applicable,Homo sapiens,2024-01-15,2024-09-13,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0001-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,63_marker,Not Applicable,4040949784,998162861,NY,NY00194967\nDC24-NY0002,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment Nextera XT kit,Illumina,Not Applicable,Homo sapiens,2024-10-05,2024-10-31,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0002-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,eight_marker,Not Applicable,3865963244,551829058,NY,NY00194968\nDC24-NY0003,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment DNA Prep kit,Illumina,Not Applicable,Homo sapiens,2024-07-25,2024-10-19,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0003-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,63_marker,Not Applicable,6035511326,715333112,NY,NY00194969\nDC24-NY0004,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment DNA Prep kit,Illumina,Not Applicable,Homo sapiens,2024-10-25,2024-12-08,USA,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0004-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,eight_marker,Not Applicable,6154763180,994471417,NY,NY00194970\nDC24-NY0005,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment Nextera XT kit,Illumina,Not Applicable,Homo sapiens,2024-09-21,2024-09-24,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0005-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,63_marker,Not Applicable,3820747779,725865711,NY,NY00194971\nDC24-NY0006,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment DNA Prep kit,Illumina,Not Applicable,Homo sapiens,2024-10-14,2024-11-11,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0006-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,63_marker,Not Applicable,4782582342,619808401,NY,NY00194972\nDC24-NY0007,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment DNA Prep kit,Illumina,Not Applicable,Homo sapiens,2024-07-07,2024-08-27,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0007-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,eight_marker,Not Applicable,2809155588,290839892,NY,NY00194973\nDC24-NY0008,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment Nextera XT kit,Illumina,Not Applicable,Homo sapiens,2024-07-10,2024-09-19,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0008-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,63_marker,Not Applicable,8137575116,865510445,NY,NY00194974\nDC24-NY0009,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment DNA Prep kit,Illumina,Not Applicable,Homo sapiens,2024-03-12,2025-01-05,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0009-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,eight_marker,Not Applicable,4719377410,374693017,NY,NY00194975\nDC24-NY0010,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Amplicon,Genomic,PCR,Illumina DNA Prep Library Kit,Amplicon enrichment Nextera XT kit,Illumina,Not Applicable,Homo sapiens,2024-11-06,2024-12-05,United States of America,NY,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0010-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,cyclosporiasis,eight_marker,Not Applicable,4725675321,365797919,NY,NY00194976\n",
+        "aligned_data_csv": "SampleId,SubmitterName,Organism,SequencingInstrument,LibraryPreparationKit,StrainName,HostScientificName,SampleCollectionDate,SampleReceivedDate,SampleOriginCountry,SampleOriginStateProvinceTerritory,HostDisease,SequencingProtocolPrimerSet,EnvironmentalSite,library_strategy,library_source,library_selection,design_description,platform,library_layout,anatomical_material,gene_targets,sequence_id,sample_description,CSID,case_id,submitter_state,state_lab_id\nDC24-NY0001,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-01-15,2024-09-13,United States of America,NY,cyclosporiasis,63_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment DNA Prep kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0001-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,4040949784,998162861,NY,NY00194967\nDC24-NY0002,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-10-05,2024-10-31,United States of America,NY,cyclosporiasis,eight_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment Nextera XT kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0002-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,3865963244,551829058,NY,NY00194968\nDC24-NY0003,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-07-25,2024-10-19,United States of America,NY,cyclosporiasis,63_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment DNA Prep kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0003-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,6035511326,715333112,NY,NY00194969\nDC24-NY0004,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-10-25,2024-12-08,USA,NY,cyclosporiasis,eight_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment DNA Prep kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0004-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,6154763180,994471417,NY,NY00194970\nDC24-NY0005,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-09-21,2024-09-24,United States of America,NY,cyclosporiasis,63_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment Nextera XT kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0005-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,3820747779,725865711,NY,NY00194971\nDC24-NY0006,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-10-14,2024-11-11,United States of America,NY,cyclosporiasis,63_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment DNA Prep kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0006-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,4782582342,619808401,NY,NY00194972\nDC24-NY0007,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-07-07,2024-08-27,United States of America,NY,cyclosporiasis,eight_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment DNA Prep kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0007-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,2809155588,290839892,NY,NY00194973\nDC24-NY0008,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina MiSeq,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-07-10,2024-09-19,United States of America,NY,cyclosporiasis,63_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment Nextera XT kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0008-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,8137575116,865510445,NY,NY00194974\nDC24-NY0009,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-03-12,2025-01-05,United States of America,NY,cyclosporiasis,eight_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment DNA Prep kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0009-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,4719377410,374693017,NY,NY00194975\nDC24-NY0010,CDC Parasite Domestic Surveillance Team,Cyclospora spp,Illumina HiSeq 2000,Illumina DNA Prep Library Kit,Not Applicable,Homo sapiens,2024-11-06,2024-12-05,United States of America,NY,cyclosporiasis,eight_marker,Not Applicable,Amplicon,Genomic,PCR,Amplicon enrichment Nextera XT kit,Illumina,,Stool,CDS-1; CDS-2; CDS-3; CDS-4; HC378; HC360i2; Mt-Junction; MSR,DC24-NY0010-Cx1-S,Targeted amplicon deep sequencing of Cyclospora spp,4725675321,365797919,NY,NY00194976\n",
+        "total_changes": 17,
+        "columns_renamed": 16,
+        "columns_added": 1,
+        "columns_removed": 0,
+        "rows_original": 10,
+        "rows_aligned": 10
+      }
+    }
+  },
+  "metadata": {
+    "program_id": "887f963b-ffea-4f3d-b2b3-9782a97066dc",
+    "core_id": "f2433d87-1984-423e-8a29-5f356cfb8c71",
+    "processing_start_time": "2025-09-30T15:42:30.440892",
+    "processing_end_time": "2025-09-30T15:42:33.980618",
+    "total_rows": 10,
+    "total_errors": 11,
+    "error_types": {
+      "REQUIRED_VALUE": 10,
+      "INVALID_OPTION": 1,
+      "INVALID_PATTERN": 0
+    },
+    "processing_duration_seconds": 3.539714,
+    "session_id": "690d5cba-4cba-4103-8d03-cf29029cbafe-20250930-154230-22075b45",
+    "success_rate": -0.1,
+    "graph_execution_duration": 3.5376131534576416
+  }
+}

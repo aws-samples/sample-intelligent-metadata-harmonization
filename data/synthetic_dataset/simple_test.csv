@@ -1,0 +1,2 @@
+sample_id,collector_name,sample_type,collection_date,analysis_date,sample_origin_country,sample_origin_state,site_classification,collection_method,sample_status,analysis_method,parameter_measured,measurement_unit,quality_control_type,laboratory_name,sample_preservation,detection_limit,sample_matrix,reporting_limit,field_ph
+WQ-2025-001,Enviromental Monitoring Team,Suface Water,2025-03-15,2025-03-18,United States of America,Californa,Industral,Graab Sample,Recieved,SM 2120b,Turbiditty,ntu,Feild Blank,Riverside Analytical Lab,HN03,0.01,Watter,0.05,7.2

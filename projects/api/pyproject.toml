@@ -1,0 +1,61 @@
+[project]
+name = "metadata-harmonization-api"
+version = "0.1.0"
+description = "API library for metadata harmonization"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiobotocore",
+    "boto3",
+    "fastapi",
+    "fastmcp>=2.3.1",
+    "loguru",
+    "metadata-harmonization-processor",
+    "pydantic",
+    "pydantic-settings",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-mock",
+    "pytest-cov",
+    "PyJWT",
+    "uvicorn",
+    "python-multipart",
+    "starlette>=0.50.0"
+]
+
+# The supply-chain cooldown belongs in the workspace-root pyproject.toml and is set
+# there. uv reads resolver settings only from the root, so an exclude-newer here would be
+# accepted without error and silently ignored.
+[tool.uv]  # nosemgrep: uv-missing-dependency-cooldown
+package = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+    "--asyncio-mode=auto",
+    "--cov=metadata_harmonization_api",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow running tests",
+    "aws: Tests that require AWS services",
+]
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

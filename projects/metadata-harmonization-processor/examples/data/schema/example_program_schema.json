@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "diagnosis": {
+      "type": "string",
+      "enum": ["Cyclospora", "Other"],
+      "description": "Patient diagnosis"
+    },
+    "collection_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Sample collection date"
+    }
+  },
+  "required": ["diagnosis", "collection_date"]
+}

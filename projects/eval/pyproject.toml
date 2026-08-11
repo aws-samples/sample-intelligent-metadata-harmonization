@@ -1,0 +1,60 @@
+[project]
+name = "metadata-harmonization-eval"
+version = "0.1.0"
+description = "Evaluation and benchmarking package for metadata harmonization system"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "CDC Data Harmonization Team" }
+]
+dependencies = [
+    "pandas>=2.0.0",
+    "click>=8.1.0",
+    "pydantic>=2.0.0",
+    "loguru>=0.7.0",
+    "pyyaml>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+]
+
+[project.scripts]
+mh-eval = "metadata_harmonization_eval.cli:evaluate"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=metadata_harmonization_eval",
+    "--cov-report=term-missing",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

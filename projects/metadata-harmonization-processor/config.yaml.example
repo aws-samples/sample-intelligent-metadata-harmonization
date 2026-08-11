@@ -1,0 +1,102 @@
+# Example configuration for Metadata Harmonization Processor
+
+# AWS Configuration
+aws_region: "us-east-1"
+aws_profile: "default"  # Optional, uses default AWS credentials if not specified
+
+# Session Management Configuration
+session_saver_type: "s3"  # Options: "s3" or "file"
+s3_bucket: "my-metadata-processor-bucket"  # Required if session_saver_type=s3
+s3_prefix: "metadata-processor/"
+# file_session_directory: "./session_data"  # Required if session_saver_type=file
+
+# Data Saver Configuration
+# Job Status Saver - tracks processing progress and status
+job_status_saver_type: "dynamodb"  # Options: "dynamodb" or "local"
+job_status_table_name: "metadata-jobs"  # Required if job_status_saver_type=dynamodb
+# job_status_storage_dir: "./job_status"  # Required if job_status_saver_type=local
+
+# Result Saver - stores ValidationResults after processing
+result_saver_type: "s3"  # Options: "s3" or "local"
+results_s3_bucket: "my-results-bucket"  # Required if result_saver_type=s3
+results_s3_prefix: "validation-results/"
+# results_local_dir: "./data/validation-results"  # Required if result_saver_type=local
+
+# Redis Configuration (optional caching)
+enable_redis_cache: true
+redis_endpoint: "my-redis-cluster.cache.amazonaws.com"  # Required if enable_redis_cache=true
+redis_port: 6379
+
+# In-Memory Cache Configuration (fallback when Redis is disabled)
+enable_memory_cache: true
+memory_cache_max_size: 1000  # Maximum number of embeddings to cache in memory
+
+# AI Model Configuration
+embedding_provider: "bedrock"  # Options: "bedrock" or "sagemaker"
+bedrock_model_id: "amazon.titan-embed-text-v1"  # Required if embedding_provider=bedrock
+# sagemaker_endpoint_name: "my-embedding-endpoint"  # Required if embedding_provider=sagemaker
+
+# Processing Configuration
+max_retries: 3
+timeout_seconds: 300
+cosine_similarity_threshold: 0.8
+
+# Schema Configuration
+schema_directory: "./data/schema"  # Path to directory containing catalog.json and schema files
+
+# Enum Correction Pipeline Configuration
+# Controls the sequential pipeline of correction nodes for INVALID_OPTION errors
+enum_correction_pipeline:
+  enabled: true  # Enable/disable the entire enum correction pipeline
+  nodes:
+    # Node 1: Fuzzy Matching - Fast string similarity matching
+    - name: fuzzy_matching
+      enabled: true
+
+    # Node 2: Contextual Inference - Uses row context to infer corrections
+    - name: contextual_inference
+      enabled: true
+
+    # Node 3: Semantic Prediction - Uses AI embeddings for semantic matching
+    - name: semantic_prediction
+      enabled: true
+
+    # Node 4: LLM Resolution - Uses LLM as last resort for difficult cases
+    - name: llm_resolution
+      enabled: true
+
+# Fuzzy Matching Configuration
+fuzzy_matching:
+  min_similarity_threshold: 0.85  # Minimum similarity score to accept a match (0.0-1.0)
+  max_concurrent_predictions: 50  # Concurrent operations limit
+
+# Contextual Inference Configuration
+contextual_inference:
+  k_neighbors: 5  # Number of nearest neighbors to consider
+  similarity_weight: 0.6  # Weight for k-NN similarity scoring
+  cooccurrence_weight: 0.4  # Weight for co-occurrence scoring (must sum to 1.0 with similarity_weight)
+  min_confidence_threshold: 0.7  # Minimum confidence to accept recommendation (0.0-1.0)
+  max_concurrent_predictions: 50  # Concurrent operations limit
+  exclude_column_patterns:  # Regex patterns to exclude columns from feature extraction
+    - ".*_id$"  # Exclude columns ending in _id (e.g., patient_id, sample_id)
+    # - ".*_uuid$"  # Uncomment to exclude UUID columns
+    # - "^internal_.*"  # Uncomment to exclude columns starting with internal_
+
+# Semantic Prediction Configuration
+semantic_prediction:
+  cosine_similarity_threshold: 0.8  # Threshold for semantic similarity matching (0.0-1.0)
+  max_concurrent_predictions: 50  # Concurrent operations limit
+  embedding_model: "amazon.titan-embed-text-v2:0"  # Bedrock embedding model
+  embedding_provider: "bedrock"  # Options: "bedrock" or "sagemaker"
+
+# LLM Resolution Configuration
+llm_resolution:
+  model_id: "amazon.nova-pro-v1:0"  # Bedrock model ID
+  aws_region: "us-east-1"  # AWS region
+  temperature: 0.3  # LLM temperature (0.0 = deterministic, 1.0 = creative)
+  max_tokens: 500  # Maximum tokens in response
+  timeout_seconds: 30  # Request timeout
+  min_confidence_level: "medium"  # Minimum confidence required: "low", "medium", or "high"
+  max_concurrent_predictions: 10  # Concurrent LLM operations limit
+  max_retries: 3  # Retry attempts for failed LLM calls
+  use_strands_agent: true  # Use Strands agent framework

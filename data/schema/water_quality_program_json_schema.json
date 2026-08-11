@@ -1,0 +1,134 @@
+{
+    "$id": "https://example.com/water-quality-program.schema.json",
+    "type": "object",
+    "title": "Water Quality Program Metadata",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "required": [
+        "analysis_method",
+        "parameter_measured",
+        "measurement_unit",
+        "quality_control_type",
+        "laboratory_name",
+        "sample_preservation",
+        "detection_limit",
+        "sample_matrix",
+        "reporting_limit",
+        "field_ph"
+    ],
+    "properties": {
+        "analysis_method": {
+            "type": "string",
+            "enum": [
+                "EPA 200.8",
+                "EPA 524.2",
+                "SM 2120B",
+                "SM 4500-H",
+                "EPA 300.0",
+                "EPA 365.1"
+            ],
+            "errorMessage": {
+                "enum": "analysis_method is a required field. Valid input(s) are: [\"EPA 200.8\", \"EPA 524.2\", \"SM 2120B\", \"SM 4500-H\", \"EPA 300.0\", \"EPA 365.1\"]"
+            }
+        },
+        "parameter_measured": {
+            "type": "string",
+            "enum": [
+                "pH",
+                "Turbidity",
+                "Dissolved Oxygen",
+                "Lead",
+                "Copper",
+                "Nitrate",
+                "Phosphorus",
+                "E. coli"
+            ],
+            "errorMessage": {
+                "enum": "parameter_measured is a required field. Valid input(s) are: [\"pH\", \"Turbidity\", \"Dissolved Oxygen\", \"Lead\", \"Copper\", \"Nitrate\", \"Phosphorus\", \"E. coli\"]"
+            }
+        },
+        "measurement_unit": {
+            "type": "string",
+            "enum": [
+                "mg/L",
+                "NTU",
+                "pH units",
+                "ug/L",
+                "CFU/100mL",
+                "percent saturation"
+            ],
+            "errorMessage": {
+                "enum": "measurement_unit is a required field. Valid input(s) are: [\"mg/L\", \"NTU\", \"pH units\", \"ug/L\", \"CFU/100mL\", \"percent saturation\"]"
+            }
+        },
+        "quality_control_type": {
+            "type": "string",
+            "enum": [
+                "Field Blank",
+                "Trip Blank",
+                "Duplicate",
+                "Standard",
+                "Matrix Spike",
+                "Not Applicable"
+            ],
+            "errorMessage": {
+                "enum": "quality_control_type is a required field. Valid input(s) are: [\"Field Blank\", \"Trip Blank\", \"Duplicate\", \"Standard\", \"Matrix Spike\", \"Not Applicable\"]"
+            }
+        },
+        "laboratory_name": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+                "minLength": "laboratory_name should not be empty"
+            }
+        },
+        "sample_preservation": {
+            "type": "string",
+            "enum": [
+                "HNO3",
+                "H2SO4",
+                "NaOH",
+                "None",
+                "Ice",
+                "Na2S2O3"
+            ],
+            "errorMessage": {
+                "enum": "sample_preservation is a required field. Valid input(s) are: [\"HNO3\", \"H2SO4\", \"NaOH\", \"None\", \"Ice\", \"Na2S2O3\"]"
+            }
+        },
+        "detection_limit": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+                "minLength": "detection_limit should not be empty"
+            }
+        },
+        "sample_matrix": {
+            "type": "string",
+            "enum": [
+                "Water",
+                "Sediment",
+                "Soil",
+                "Air",
+                "Biota"
+            ],
+            "errorMessage": {
+                "enum": "sample_matrix is a required field. Valid input(s) are: [\"Water\", \"Sediment\", \"Soil\", \"Air\", \"Biota\"]"
+            }
+        },
+        "reporting_limit": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+                "minLength": "reporting_limit should not be empty"
+            }
+        },
+        "field_ph": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+                "minLength": "field_ph should not be empty"
+            }
+        }
+    },
+    "description": "Water Quality Program Sample Metadata"
+}

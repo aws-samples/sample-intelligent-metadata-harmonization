@@ -1,0 +1,43 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# SageMaker Configuration Example
+# Configuration using SageMaker endpoints for embeddings instead of Bedrock
+
+# AWS Configuration
+aws_region: "us-east-1"
+aws_profile: "sagemaker-dev"
+
+# Session Management - S3-based
+session_saver_type: "s3"
+session_s3_bucket: "sagemaker-metadata-sessions"
+session_s3_prefix: "sagemaker-experiments/"
+
+# Data Saver Configuration
+job_status_saver_type: "dynamodb"
+job_status_table_name: "sagemaker-metadata-jobs"
+result_saver_type: "s3"
+results_s3_bucket: "sagemaker-metadata-results"
+results_s3_prefix: "embeddings-experiments/"
+
+# Redis Configuration - Enabled for caching embeddings
+enable_redis_cache: true
+redis_endpoint: "sagemaker-embeddings-cache.xyz789.cache.amazonaws.com"
+redis_port: 6379
+
+# In-Memory Cache Configuration
+enable_memory_cache: true
+memory_cache_max_size: 2000
+
+# AI Model Configuration - SageMaker endpoint
+embedding_provider: "sagemaker"
+sagemaker_endpoint_name: "huggingface-sentence-transformers-2024-01-15"
+cosine_similarity_threshold: 0.75
+max_retries: 3
+
+# Processing Configuration
+timeout_seconds: 450
+
+# Schema Configuration
+schema_directory: "./schemas"

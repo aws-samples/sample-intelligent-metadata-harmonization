@@ -1,0 +1,100 @@
+[project]
+name = "metadata-harmonization-app"
+
+version = "0.1.0"
+description = "A monorepo for the metadata harmonization full-stack application"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "metadata-harmonization-api",
+    "metadata-harmonization-processor[dev,test]",
+    "metadata-harmonization-agent",
+    "metadata-harmonization-eval",
+
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "pre-commit",
+]
+
+[tool.uv]
+# Supply-chain cooldown: refuse package versions published after this timestamp, so a
+# freshly-published malicious release cannot enter the lock on the next resolve.
+#
+# Must live in the workspace root. uv reads `tool.uv` resolver settings only from the
+# root pyproject.toml -- the same key in a member (e.g. projects/api/pyproject.toml) is
+# accepted without error and silently ignored.
+#
+# Keep every mention of tool.uv in this comment block unbracketed. The semgrep rule
+# package_managers.uv.uv-missing-dependency-cooldown scans from the real header to the
+# next opening square bracket, so a bracketed mention here truncates its window before
+# it reaches exclude-newer below and it reports a missing cooldown.
+#
+# Note that adding or raising this key makes uv discard the existing lockfile and
+# re-resolve from scratch, so treat a change here as a dependency upgrade: review the
+# diff and re-run both Python suites.
+#
+# The same rule also wants a *relative* window such as "7 days". The frozen absolute
+# timestamp below is deliberate: a relative cutoff is recomputed from the wall clock on
+# every resolve, so the lock would drift daily. Verified -- "7 days" resolved boto3 to
+# 1.43.56 where this pin gives 1.43.59. Hence the inline suppression.
+exclude-newer = "2026-07-30T00:00:00Z"  # nosemgrep: uv-missing-dependency-cooldown
+
+[tool.uv.exclude-newer-package]
+# pandas 3.x changes CSV dtype inference and fails 5 processor data_loader tests
+# (test_load_csv_with_numeric_strings and friends). Held until those are ported; this is
+# a real upgrade to do later, not a permanent pin.
+pandas = "2026-01-01T00:00:00Z"
+
+[tool.uv.sources]
+metadata-harmonization-api = { workspace = true}
+metadata-harmonization-processor = { workspace = true}
+metadata-harmonization-agent = { workspace = true}
+metadata-harmonization-eval = { workspace = true}
+
+[tool.uv.workspace]
+members = ["projects/api", "projects/metadata-harmonization-processor", "projects/agent", "projects/eval"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["projects/*/src/*"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.isort]
+line_length = 120
+profile = "black"
+force_alphabetical_sort_within_sections = true
+known_first_party = ["metadata_harmonization_api"]
+default_section = "THIRDPARTY"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+ignore = ["D401"]
+
+[tool.bandit]
+exclude_dirs = ["tests", "docs", "venv", ".venv"]
+skips = ["B101", "B311"]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+disallow_untyped_decorators = true
+disallow_incomplete_defs = true
+disallow_any_unimported = false
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+strict_optional = true
+show_error_codes = true
+explicit_package_bases = true

@@ -1,0 +1,57 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# S3 Production Configuration
+# Optimized for production deployment with S3ResultSaver and DynamoDB
+# Requires AWS credentials and proper IAM permissions
+
+# AWS Configuration
+aws_region: "us-east-1"
+aws_profile: "production"  # or use IAM roles in production
+
+# Session Management - S3-based for production scalability
+session_saver_type: "s3"
+
+# Production Mode Settings
+local_development_mode: false
+disable_ai_features: false
+
+# Job Status Configuration - DynamoDB for production
+job_status_saver_type: "dynamodb"
+job_status_table_name: "metadata-harmonization-jobs"
+
+# Result Storage Configuration - S3 with S3ResultSaver
+result_saver_type: "s3"
+results_s3_bucket: "my-metadata-validation-results"
+results_s3_prefix: "production/validation-results/"
+
+# Caching Configuration - Redis enabled for production performance
+enable_redis_cache: true
+redis_endpoint: "my-elasticache-cluster.cache.amazonaws.com"
+redis_port: 6379
+
+# Fallback in-memory caching
+enable_memory_cache: true
+memory_cache_max_size: 50000
+
+# AI Model Configuration - Production settings
+embedding_provider: "bedrock"
+bedrock_model_id: "amazon.titan-embed-text-v2:0"
+cosine_similarity_threshold: 0.8
+max_retries: 5
+
+# Processing Configuration - Production timeouts
+timeout_seconds: 600
+
+# Schema Configuration - Production schema location
+schema_directory: "/opt/metadata-processor/schemas"
+
+# Performance Settings for Production
+batch_size: 1000
+parallel_processing: true
+
+# S3 Specific Settings
+s3_multipart_threshold: 104857600  # 100MB threshold for multipart uploads
+s3_max_concurrency: 10
+s3_multipart_chunksize: 8388608    # 8MB chunk size

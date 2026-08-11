@@ -1,0 +1,59 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# Metadata Harmonization API Configuration
+# This file contains configuration for both the API and the metadata-harmonization-processor
+
+# API Configuration
+api:
+  max_file_size_mb: 50
+  allowed_file_types: ["text/csv", "application/csv"]
+  validation_timeout_seconds: 300
+  enable_auth: false  # Set to true in production
+
+  # MCP Server Configuration
+  mcp_enabled: true
+  mcp_mount_path: "/mcp"
+
+# Processor Configuration (passed to MetadataHarmonizationProcessor)
+processor:
+  # AWS Configuration
+  aws_region: "us-east-1"
+  aws_profile: null  # Use default AWS credentials
+
+  # Remote cloud settings (for production/cloud deployment)
+  # job_status_saver_type: "dynamodb"
+  # job_status_table_name: "metadata-harmonization-dev-metadata-harmonization-app-dev-CoreMetadataUploadJob876984D6-1AHBGCCXTDUKZ"
+  # result_saver_type: "s3"
+  # results_s3_bucket: "metadata-harmonization-de-corevalidationresultsedf-kkfjbcrm7a7m"
+  # results_s3_prefix: "validation-results/"
+
+  # Session management (S3 for cloud deployment)
+  # session_saver_type: "s3"
+  # session_s3_bucket: "metadata-harmonization-de-corevalidationresultsedf-kkfjbcrm7a7m"
+  # session_s3_prefix: "sessions/"
+
+  # Local development settings (commented out - uncomment for local development)
+  job_status_saver_type: "local"
+  job_status_storage_dir: "./datastore/job_status"
+  result_saver_type: "local"
+  results_local_dir: "./datastore/validation-results"
+  session_saver_type: "file"
+  file_session_directory: "./datastore/sessions"
+
+  # Schema collection
+  schema_directory: "./data/schema"
+
+  # AI features (enabled for cloud deployment)
+  enable_redis_cache: false  # Set to true if using Redis
+  enable_memory_cache: true
+  memory_cache_max_size: 100000
+  embedding_provider: "bedrock"
+  bedrock_model_id: "amazon.titan-embed-text-v2:0"
+  cosine_similarity_threshold: 0.5
+
+  # Processing configuration
+  max_retries: 3
+  timeout_seconds: 300
+  local_development_mode: True  # Set to false for cloud deployment

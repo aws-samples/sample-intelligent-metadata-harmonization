@@ -1,0 +1,72 @@
+# Copyright (c) 2026 Amazon.com
+# This file is licensed under the MIT License.
+# See the LICENSE file in the project root for full license information.
+
+# Example configuration with confidence scoring settings
+# This demonstrates how to configure confidence scoring for the metadata harmonization processor
+
+# Schema directory (required)
+schema_directory: "./data/schema"
+
+# AWS Configuration
+aws_region: "us-east-1"
+
+# Session Management
+session_saver_type: "file"
+file_session_directory: "./sessions"
+
+# Data Storage
+job_status_saver_type: "local"
+job_status_storage_dir: "./job_status"
+result_saver_type: "local"
+results_local_dir: "./validation-results"
+
+# Disable cloud services for local development
+local_development_mode: true
+enable_redis_cache: false
+enable_memory_cache: true
+
+# Schema Alignment Configuration
+schema_alignment:
+  use_llm: true
+  model_id: "amazon.nova-pro-v1:0"
+  llm_temperature: 0.3
+  llm_max_tokens: 800
+  similarity_threshold: 0.7
+  enable_change_tracking: true
+
+# Confidence Scoring Configuration
+confidence:
+  # Global confidence settings
+  enabled: true
+
+  # Confidence level mapping (level -> numerical score)
+  confidence_level_mapping:
+    High: 0.9
+    Medium: 0.65
+    Low: 0.3
+
+  # Prediction confidence thresholds for semantic similarity
+  semantic_high_threshold: 0.8
+  semantic_medium_threshold: 0.5
+
+  # Prediction confidence thresholds for pattern matching
+  pattern_high_threshold: 0.7
+  pattern_medium_threshold: 0.4
+
+  # Schema alignment confidence settings
+  schema_confidence_enabled: true
+  llm_confidence_weight: 0.7
+  similarity_weight: 0.3
+
+  # Prediction confidence settings
+  prediction_confidence_enabled: true
+
+# Processing Configuration
+max_retries: 3
+timeout_seconds: 300
+cosine_similarity_threshold: 0.8
+
+# AI Model Configuration
+embedding_provider: "bedrock"
+bedrock_model_id: "amazon.titan-embed-text-v1"

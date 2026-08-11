@@ -1,0 +1,14 @@
+[
+  {
+    "core_uuid": "example-core-uuid",
+    "core_name": "Example Core Schema",
+    "core_path": "example_core_schema.json",
+    "program": [
+      {
+        "program_uuid": "example-program-uuid",
+        "program_name": "Example Program Schema",
+        "program_path": "example_program_schema.json"
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+patient_id,age,gender,diagnosis,collection_date
+P001,25,M,Cyclospora,2023-01-15
+P002,30,F,Cyclospora,2023-01-16
+P003,invalid_age,X,Other,2023-01-17
+P004,45,Male,Cyclospora,2023-01-18
+P005,,F,,invalid_date
+INVALID_ID,35,F,Cyclospora,2023-01-20
+P006,200,M,Unknown_Diagnosis,2023-01-21
+P007,28,Female,Cyclospora,2023/01/22
+P008,42,m,Cyclospora,2023-01-23
+P009,33,f,Other,2023-01-24
+P010,19,Other,Cyclospora,2023-01-25

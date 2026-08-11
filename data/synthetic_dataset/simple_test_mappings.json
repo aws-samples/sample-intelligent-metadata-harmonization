@@ -1,0 +1,186 @@
+[
+    {
+        "row": 0,
+        "field": "collector_name",
+        "schema_field": "CollectorName",
+        "original": "Environmental Monitoring Team",
+        "error": "Enviromental Monitoring Team",
+        "error_type": "typo",
+        "valid_options": [
+            "Environmental Monitoring Team",
+            "Field Services Division",
+            "Water Resources Unit"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "sample_type",
+        "schema_field": "SampleType",
+        "original": "Surface Water",
+        "error": "Suface Water",
+        "error_type": "typo",
+        "valid_options": [
+            "Surface Water",
+            "Groundwater",
+            "Wastewater",
+            "Drinking Water",
+            "Stormwater",
+            "Reclaimed Water"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "sample_origin_state",
+        "schema_field": "SampleOriginState",
+        "original": "CA",
+        "error": "Californa",
+        "error_type": "typo",
+        "valid_options": [
+            "CA"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "site_classification",
+        "schema_field": "SiteClassification",
+        "original": "Industrial",
+        "error": "Industral",
+        "error_type": "typo",
+        "valid_options": [
+            "Industrial",
+            "Agricultural",
+            "Residential",
+            "Natural",
+            "Municipal",
+            "Commercial"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "collection_method",
+        "schema_field": "CollectionMethod",
+        "original": "Grab Sample",
+        "error": "Graab Sample",
+        "error_type": "typo",
+        "valid_options": [
+            "Grab Sample",
+            "Composite Sample",
+            "Continuous Monitoring",
+            "Depth Integrated",
+            "Not Applicable",
+            "Not Provided"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "sample_status",
+        "schema_field": "SampleStatus",
+        "original": "Received",
+        "error": "Recieved",
+        "error_type": "typo",
+        "valid_options": [
+            "Received",
+            "In Analysis",
+            "Completed",
+            "Rejected",
+            "On Hold"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "analysis_method",
+        "schema_field": "analysis_method",
+        "original": "SM 2120B",
+        "error": "SM 2120b",
+        "error_type": "typo",
+        "valid_options": [
+            "EPA 200.8",
+            "EPA 524.2",
+            "SM 2120B",
+            "SM 4500-H",
+            "EPA 300.0",
+            "EPA 365.1"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "parameter_measured",
+        "schema_field": "parameter_measured",
+        "original": "Turbidity",
+        "error": "Turbiditty",
+        "error_type": "typo",
+        "valid_options": [
+            "pH",
+            "Turbidity",
+            "Dissolved Oxygen",
+            "Lead",
+            "Copper",
+            "Nitrate",
+            "Phosphorus",
+            "E. coli"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "measurement_unit",
+        "schema_field": "measurement_unit",
+        "original": "NTU",
+        "error": "ntu",
+        "error_type": "typo",
+        "valid_options": [
+            "mg/L",
+            "NTU",
+            "pH units",
+            "ug/L",
+            "CFU/100mL",
+            "percent saturation"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "quality_control_type",
+        "schema_field": "quality_control_type",
+        "original": "Field Blank",
+        "error": "Feild Blank",
+        "error_type": "typo",
+        "valid_options": [
+            "Field Blank",
+            "Trip Blank",
+            "Duplicate",
+            "Standard",
+            "Matrix Spike",
+            "Not Applicable"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "sample_preservation",
+        "schema_field": "sample_preservation",
+        "original": "HNO3",
+        "error": "HN03",
+        "error_type": "typo",
+        "valid_options": [
+            "HNO3",
+            "H2SO4",
+            "NaOH",
+            "None",
+            "Ice",
+            "Na2S2O3"
+        ]
+    },
+    {
+        "row": 0,
+        "field": "sample_matrix",
+        "schema_field": "sample_matrix",
+        "original": "Water",
+        "error": "Watter",
+        "error_type": "typo",
+        "valid_options": [
+            "Water",
+            "Sediment",
+            "Soil",
+            "Air",
+            "Biota"
+        ]
+    }
+]

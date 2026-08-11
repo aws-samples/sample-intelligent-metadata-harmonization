@@ -1,0 +1,14 @@
+[
+    {
+        "core_uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "core_path": "water_quality_core_json_schema.json",
+        "core_name": "Water Quality Core",
+        "program": [
+            {
+                "program_uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+                "program_path": "water_quality_program_json_schema.json",
+                "program_name": "Water Quality Program"
+            }
+        ]
+    }
+]

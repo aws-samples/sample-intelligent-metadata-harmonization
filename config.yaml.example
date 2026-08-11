@@ -1,0 +1,212 @@
+# Sample Configuration for Metadata Harmonization Application
+# Copy this file to config.yaml and update the values for your environment
+
+# Application name - updated for metadata harmonization
+appName: "metadata-harmonization-app"
+
+# Current environment to deploy
+env: "dev"
+
+# Development environment configuration
+dev:
+  # AWS deployment configuration
+  profile: "your-aws-profile"
+  deploymentName: "metadata-harmonization-dev"
+  accountNumber: "123456789012"  # Your 12-digit AWS account number
+  region: "us-east-1"
+  deploymentStage: "dev"
+  removalPolicy: "destroy"  # Use "retain" for production
+  runCdkNag: false
+
+  # Application configuration
+  logLevel: "INFO"
+  targetPlatform: "linux/amd64"
+
+  # Metadata validation configuration
+  metadataConfig:
+    metadataConfigDir: "./data"  # Directory containing metadata schemas and configuration
+    # Optional: Override default resource names
+    # validationResultsBucketName: "custom-validation-results-bucket"
+    # schemaStorageBucketName: "custom-schema-storage-bucket"
+    # metadataSchemasTableName: "custom-metadata-schemas-table"
+    # metadataUploadJobTableName: "custom-metadata-upload-job-table"
+
+  # Schema Alignment Configuration
+  schema_alignment:
+    use_llm: true
+    model_id: "amazon.nova-pro-v1:0"
+    aws_region: "us-east-1"
+    llm_temperature: 0.3
+    llm_max_tokens: 800
+    llm_timeout_seconds: 30
+    fallback_on_llm_failure: true
+    similarity_threshold: 0.7
+    enable_change_tracking: true
+    enable_column_batching: false
+    column_batch_size: 20
+    enable_column_splitting: true
+    enable_column_combining: true
+
+  # Authentication configuration (unchanged)
+  cognitoAuthConfig:
+    userPoolName: "metadata-harmonization-users"  # Creates new user pool
+    # userPoolId: "us-east-1_XXXXXXXXX"  # Use existing user pool instead
+    userPoolClientId: ""  # Leave empty to create new client
+    userPoolDomainName: "metadata-harmonization-auth"
+
+  # VPC configuration (optional - creates new VPC if not specified)
+  vpcConfig:
+    vpcId: ""  # Leave empty to create new VPC
+    vpcGatewayEndpointS3Id: ""
+    vpcGatewayEndpointDdbId: ""
+
+  # Load balancer configuration
+  loadBalancerConfig:
+    idleTimeout: 300
+
+  # CloudWatch alarms configuration
+  alarmConfig:
+    enable: false
+    period: 1
+    threshold: 1
+    evaluationPeriods: 1
+    loggingFilterPatterns: ["ERROR", "CRITICAL"]
+    emailAddresses: []  # Add email addresses when enabling alarms
+
+  # REST API configuration
+  restApiConfig:
+    containerConfig:
+      cpuLimit: 1024
+      memoryLimit: 2048
+      minHealthyPercent: 50
+      healthCheckConfig:
+        command: ["CMD-SHELL", "curl -f http://localhost:8080/api/v1/health || exit 1"]
+        interval: 30
+        startPeriod: 60
+        timeout: 10
+        retries: 3
+
+    healthCheckConfig:
+      path: "/api/health"
+      interval: 60
+      timeout: 30
+      healthyThresholdCount: 2
+      unhealthyThresholdCount: 10
+
+    autoScalingConfig:
+      minCapacity: 1
+      maxCapacity: 5
+      defaultInstanceWarmup: 120
+      cooldown: 300
+      metricConfig:
+        albMetricName: "RequestCountPerTarget"
+        targetValue: 100
+        duration: 60
+        estimatedInstanceWarmup: 60
+
+
+  # Resource tags
+  tags:
+    - Key: "Environment"
+      Value: "Development"
+    - Key: "Project"
+      Value: "Metadata-Harmonization"
+    - Key: "Owner"
+      Value: "Data-Team"
+
+# Production environment configuration
+prod:
+  # AWS deployment configuration
+  profile: "your-prod-aws-profile"
+  deploymentName: "metadata-harmonization-prod"
+  accountNumber: "123456789012"  # Your 12-digit AWS account number
+  region: "us-east-1"
+  deploymentStage: "prod"
+  removalPolicy: "retain"  # Always retain resources in production
+  runCdkNag: true  # Enable security checks in production
+
+  # Application configuration
+  logLevel: "WARNING"
+  targetPlatform: "linux/amd64"
+
+  # Metadata validation configuration
+  metadataConfig:
+    metadataConfigDir: "./data"
+
+  # Schema Alignment Configuration
+  schema_alignment:
+    use_llm: true
+    model_id: "amazon.nova-pro-v1:0"
+    aws_region: "us-east-1"
+    llm_temperature: 0.2
+    llm_max_tokens: 800
+    llm_timeout_seconds: 45
+    fallback_on_llm_failure: true
+    similarity_threshold: 0.8
+    enable_change_tracking: true
+    enable_column_batching: true
+    column_batch_size: 30
+    enable_column_splitting: true
+    enable_column_combining: true
+
+  # Authentication configuration
+  cognitoAuthConfig:
+    userPoolName: "metadata-harmonization-users-prod"
+    userPoolDomainName: "metadata-harmonization-auth-prod"
+
+  # Load balancer configuration
+  loadBalancerConfig:
+    idleTimeout: 300
+
+  # CloudWatch alarms configuration (enabled for production)
+  alarmConfig:
+    enable: true
+    period: 5
+    threshold: 5
+    evaluationPeriods: 2
+    loggingFilterPatterns: ["ERROR", "CRITICAL"]
+    emailAddresses:
+      - "admin@your-organization.com"
+      - "devops@your-organization.com"
+
+  # REST API configuration (higher capacity for production)
+  restApiConfig:
+    containerConfig:
+      cpuLimit: 2048
+      memoryLimit: 4096
+      minHealthyPercent: 75
+      healthCheckConfig:
+        command: ["CMD-SHELL", "curl -f http://localhost:8080/api/v1/health || exit 1"]
+        interval: 30
+        startPeriod: 60
+        timeout: 10
+        retries: 3
+
+    healthCheckConfig:
+      path: "/api/health"
+      interval: 30
+      timeout: 15
+      healthyThresholdCount: 2
+      unhealthyThresholdCount: 5
+
+    autoScalingConfig:
+      minCapacity: 2
+      maxCapacity: 10
+      defaultInstanceWarmup: 120
+      cooldown: 300
+      metricConfig:
+        albMetricName: "RequestCountPerTarget"
+        targetValue: 200
+        duration: 60
+        estimatedInstanceWarmup: 60
+
+  # Resource tags
+  tags:
+    - Key: "Environment"
+      Value: "Production"
+    - Key: "Project"
+      Value: "Metadata-Harmonization"
+    - Key: "Owner"
+      Value: "Data-Team"
+    - Key: "CostCenter"
+      Value: "IT"

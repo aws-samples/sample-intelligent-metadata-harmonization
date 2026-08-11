@@ -1,0 +1,145 @@
+{
+    "$id": "https://example.com/water-quality-core.schema.json",
+    "type": "object",
+    "title": "Water Quality Core Metadata",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "required": [
+        "SampleId",
+        "CollectorName",
+        "SampleType",
+        "CollectionDate",
+        "AnalysisDate",
+        "SampleOriginCountry",
+        "SampleOriginState",
+        "SiteClassification",
+        "CollectionMethod",
+        "SampleStatus"
+    ],
+    "properties": {
+        "SampleId": {
+            "type": "string",
+            "minLength": 1,
+            "errorMessage": {
+                "minLength": "sample_id should not be empty"
+            }
+        },
+        "CollectorName": {
+            "type": "string",
+            "enum": [
+                "Environmental Monitoring Team",
+                "Field Services Division",
+                "Water Resources Unit"
+            ],
+            "errorMessage": {
+                "enum": "collector_name is a required field. Valid input(s) are: [\"Environmental Monitoring Team\", \"Field Services Division\", \"Water Resources Unit\"]"
+            }
+        },
+        "SampleType": {
+            "type": "string",
+            "enum": [
+                "Surface Water",
+                "Groundwater",
+                "Wastewater",
+                "Drinking Water",
+                "Stormwater",
+                "Reclaimed Water"
+            ],
+            "errorMessage": {
+                "enum": "sample_type is a required field. Valid input(s) are: [\"Surface Water\", \"Groundwater\", \"Wastewater\", \"Drinking Water\", \"Stormwater\", \"Reclaimed Water\"]"
+            }
+        },
+        "CollectionDate": {
+            "type": "string",
+            "amdValidation": "amd-valid-dates"
+        },
+        "AnalysisDate": {
+            "type": "string",
+            "amdValidation": "amd-valid-dates"
+        },
+        "SampleOriginCountry": {
+            "type": "string",
+            "enum": [
+                "United States of America",
+                "Canada",
+                "Mexico"
+            ],
+            "errorMessage": {
+                "enum": "sample_origin_country is a required field. Valid input(s) are: [\"United States of America\", \"Canada\", \"Mexico\"]"
+            }
+        },
+        "SampleOriginState": {
+            "type": "string",
+            "amdValidation": "amd-depends-on,amd-parent-child-enum",
+            "amdValidationOptions": {
+                "amd-depends-on": "SampleOriginCountry",
+                "amd-parent-child-enum": {
+                    "parentKey": "SampleOriginCountry",
+                    "parentChildData": {
+                        "United States of America": [
+                            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+                            "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+                            "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+                            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+                            "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+                            "DC", "PR", "VI", "GU", "AS", "MP"
+                        ],
+                        "Canada": [
+                            "AB", "BC", "MB", "NB", "NL", "NS", "NT", "NU", "ON", "PE", "QC", "SK", "YT"
+                        ],
+                        "Mexico": [
+                            "AGU", "BCN", "BCS", "CAM", "CHP", "CHH", "COA", "COL", "DUR",
+                            "GUA", "GRO", "HID", "JAL", "MEX", "MIC", "MOR", "NAY", "NLE",
+                            "OAX", "PUE", "QUE", "ROO", "SLP", "SIN", "SON", "TAB", "TAM",
+                            "TLA", "VER", "YUC", "ZAC", "CMX"
+                        ]
+                    }
+                }
+            },
+            "errorMessage": {
+                "enum": "sample_origin_state is a required field and must correspond to the selected country"
+            }
+        },
+        "SiteClassification": {
+            "type": "string",
+            "enum": [
+                "Industrial",
+                "Agricultural",
+                "Residential",
+                "Natural",
+                "Municipal",
+                "Commercial"
+            ],
+            "errorMessage": {
+                "enum": "site_classification is a required field. Valid input(s) are: [\"Industrial\", \"Agricultural\", \"Residential\", \"Natural\", \"Municipal\", \"Commercial\"]"
+            }
+        },
+        "CollectionMethod": {
+            "type": "string",
+            "enum": [
+                "Grab Sample",
+                "Composite Sample",
+                "Continuous Monitoring",
+                "Depth Integrated",
+                "Not Applicable",
+                "Not Provided"
+            ],
+            "errorMessage": {
+                "enum": "collection_method is a required field. Valid input(s) are: [\"Grab Sample\", \"Composite Sample\", \"Continuous Monitoring\", \"Depth Integrated\", \"Not Applicable\", \"Not Provided\"]"
+            }
+        },
+        "SampleStatus": {
+            "type": "string",
+            "enum": [
+                "Received",
+                "In Analysis",
+                "Completed",
+                "Rejected",
+                "On Hold"
+            ],
+            "errorMessage": {
+                "enum": "sample_status is a required field. Valid input(s) are: [\"Received\", \"In Analysis\", \"Completed\", \"Rejected\", \"On Hold\"]"
+            }
+        }
+    },
+    "description": "Water Quality Core Sample Metadata"
+}

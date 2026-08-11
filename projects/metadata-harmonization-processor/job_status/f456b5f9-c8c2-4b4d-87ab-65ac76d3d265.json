@@ -1,0 +1,12 @@
+{
+  "job_id": "f456b5f9-c8c2-4b4d-87ab-65ac76d3d265",
+  "status": "failed",
+  "metadata": {
+    "stage": "graph_execution",
+    "error": "Node 'schema_alignment' of type '<class 'metadata_harmonization_processor.nodes.schema_alignment.SchemaAlignmentNode'>' is not supported",
+    "error_type": "ValueError",
+    "end_time": "2025-09-08T18:22:25.091474"
+  },
+  "updated_at": "2025-09-08T22:22:25.091478+00:00",
+  "created_at": "2025-09-08T22:22:25.090540+00:00"
+}
