@@ -27,7 +27,7 @@
     "cdk-nag": "^2.34.23",
     "constructs": "^10.0.0",
     "js-yaml": "^4.1.0",
-    "zod": "^3.24.1"
+    "zod": "^4.6.6"
   },
   "//overrides": [
     "minimatch: without this override, the root copy resolves to 9.0.5 via",
